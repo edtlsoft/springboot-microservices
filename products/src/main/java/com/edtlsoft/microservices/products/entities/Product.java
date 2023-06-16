@@ -17,6 +17,9 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @Transient
+    private Integer port;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,4 +51,13 @@ public class Product {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
+    }
+
 }
