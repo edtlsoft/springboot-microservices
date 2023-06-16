@@ -20,7 +20,7 @@ public class ItemService implements IItemService {
 
     @Override
     public List<Item> findAll() {
-        List<Product> products = Arrays.asList(clientRest.getForObject("http://localhost:8001/", Product[].class));
+        List<Product> products = Arrays.asList(clientRest.getForObject("http://products-service/", Product[].class));
 
         return products
                 .stream()
@@ -32,7 +32,7 @@ public class ItemService implements IItemService {
     public Item findById(Long id, Integer quantity) {
         Map<String, String> pathVariables = new HashMap<String, String>();
         pathVariables.put("id", id.toString());
-        Product product = clientRest.getForObject("http://localhost:8001/{id}", Product.class, pathVariables);
+        Product product = clientRest.getForObject("http://products-service/{id}", Product.class, pathVariables);
 
         return new Item(product, quantity);
     }
