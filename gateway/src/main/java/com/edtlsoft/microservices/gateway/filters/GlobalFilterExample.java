@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 @Component
 public class GlobalFilterExample implements GlobalFilter, Ordered {
 
@@ -24,8 +26,12 @@ public class GlobalFilterExample implements GlobalFilter, Ordered {
         return chain.filter(exchange).then(Mono.fromRunnable(() -> {
             logger.info("Executing Global Filter Post");
 
-            String token = exchange.getRequest().getHeaders().getFirst("token");
-            logger.info("token: " + token);
+            Optional
+                .ofNullable(exchange.getRequest().getHeaders().getFirst("token"))
+                .ifPresent(token -> {
+                    exchange.getResponse().getHeaders().add("token", token);
+                    logger.info("token: " + token);
+                });
 
             exchange.getResponse().getCookies().add("color", ResponseCookie.from("color", "blue").build());
             // exchange.getResponse().getHeaders().add("Content-Type", "text/plain");

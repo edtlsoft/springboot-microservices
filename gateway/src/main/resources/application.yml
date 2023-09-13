@@ -8,6 +8,12 @@ spring:
             - Path=/api/products/**
           filters:
             - StripPrefix=2
+            # - FilterToSetResponseCookie=Hello from Example Gateway Filter, CookieFilter, CookieValue
+            - name: FilterToSetResponseCookie
+              args:
+                message: Hello from Example Gateway Filter
+                cookieName: CookieFilter2
+                cookieValue: CookieValue2
 
         - id: items-service
           uri: lb://items-service
