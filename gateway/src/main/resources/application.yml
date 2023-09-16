@@ -21,3 +21,6 @@ spring:
             - Path=/api/items/**
           filters:
             - StripPrefix=2
+            - AddRequestHeader=token-request-header, TestRequest123
+            - AddResponseHeader=token-response-header, Test123
+            - AddRequestParameter=token-request-parameter, TestParameter123
