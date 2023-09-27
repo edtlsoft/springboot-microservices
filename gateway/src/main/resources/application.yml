@@ -9,6 +9,11 @@ spring:
           predicates:
             - Path=/api/products/**
           filters:
+            - name: CircuitBreaker
+              args:
+                name: products
+                statusCodes: 500, 404
+                fallbackUri: forward:/api/items/2/quantity/5
             - StripPrefix=2
             # - FilterToSetResponseCookie=Hello from Example Gateway Filter, CookieFilter, CookieValue
             - name: FilterToSetResponseCookie
@@ -53,5 +58,5 @@ resilience4j:
       default:
         timeout-duration: 2s
     instances:
-      items:
+      products:
         base-config: default
