@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri:
+          uri: file:///D:/Documentos/Platzi/Java/config-git
 
 server:
   port: 8888
