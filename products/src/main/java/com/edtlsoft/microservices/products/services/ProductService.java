@@ -25,4 +25,16 @@ public class ProductService implements IProductService {
     public Product findById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
+
+    @Override
+    @Transactional
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Product product) {
+        productRepository.delete(product);
+    }
 }
