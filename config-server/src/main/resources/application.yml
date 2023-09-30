@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: file:///D:/Documentos/Platzi/Java/config-git
+          uri: https://github.com/edtlsoft/items-service-config
 
 server:
   port: 8888
